@@ -1,11 +1,13 @@
-//-------------------------------------------------------------Modules and Models ------------------------------------------------------
-var express = require('express');
-var bcrypt = require('bcrypt');
-var jwt = require('jsonwebtoken')
-var router = express.Router();
-var User=require('../models/users_model');
+//------------------------------------------------------------- Modules and Models -------------------------------------------------
+var express     = require('express');
+var bcrypt      = require('bcrypt');
+var JWT         = require('jsonwebtoken');
+var jwt         = require('jwt-simple');
+var passport    = require('passport');
+var router      = express.Router();
+var User        = require('../models/users_model');
 
-//-------------------------------------------------------------Routes--------------------------------------------------------------
+//------------------------------------------------------------- Routes -------------------------------------------------------------
  router.get('/', function(req, res) {
   res.render('index', { user:'emma', title: 'My Mongo App' });
  });
