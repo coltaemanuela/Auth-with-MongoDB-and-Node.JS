@@ -1,7 +1,11 @@
 //-------------------------------------------------------------Modules and Models ------------------------------------------------------
 var express = require('express');
+var crypto = require('crypto');
+var bcrypt = require('bcrypt');
 var router = express.Router();
 var User=require('../models/users_model');
+
+
 //-------------------------------------------------------------Routes--------------------------------------------------------------
 router.get('/', function(req, res, next) {
   res.render('index', { user:'emma', title: 'My Mongo App' });
@@ -12,18 +16,34 @@ router.get('/signup',function(req,res){
 }); 
 
 router.post('/signup',function(req,res){  
-     var user= new User({
-     name: req.body.name,
-     email: req.body.email,
-     password:req.body.password
-      });
-     user.save(function (err) {
-      if (err) {
-        console.log(req.body);
-        return res.send("oops!");          
-      }      
-       res.send("success!");
-     });  
+     //var user= new User({
+     //username: req.body.username,
+     //email: req.body.email,
+     //password:req.body.password
+     // });
+     
+    const saltRounds = 10;
+    const myPlaintextPassword = req.body.password;
+   // const someOtherPlaintextPassword = 'altaparola';
+    
+    bcrypt.genSalt(saltRounds, function(err, salt) {
+        bcrypt.hash(myPlaintextPassword, salt, function(err, hash) {
+             
+             var user= new User({
+                username: req.body.username,
+                email: req.body.email,
+                password: hash // req.body.password
+             });
+             
+            user.save(function (err) {
+            if (err) {
+              console.log(req.body);
+              return res.send("oops!");          
+            }      
+             res.send("success! An account for user "+ req.body.username +' has been created sucessfully!');
+           });
+        });
+    }); 
   });
 
 //-------------------------------------------------------------- Export -----------------------------------------------------------
