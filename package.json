@@ -1,0 +1,23 @@
+{
+  "name": "mongo-test",
+  "version": "1.0.0",
+  "description": "A simple app created with MongoDB and nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coltaemanuela/auth-with-mongo.git"
+  },
+  "keywords": [
+    "mongoDB",
+    "nodejs"
+  ],
+  "author": "Emanuela-Felicia Colta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coltaemanuela/auth-with-mongo/issues"
+  },
+  "homepage": "https://github.com/coltaemanuela/auth-with-mongo#readme"
+}
