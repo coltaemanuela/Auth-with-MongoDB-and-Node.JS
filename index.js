@@ -5,6 +5,7 @@ var session = require('express-session');
 var path = require('path');
 var mongoose= require('mongoose');
 var connectMongo=require('connect-mongo');
+mongoose.Promise = require('bluebird');
 var app = express();
 
 ;
