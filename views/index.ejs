@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+  
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    
+    <!-- la formular trebuie sa pun action -->
+ <%  if(user){ %>
+ 	<h1>Hello ,<%= user.email %>!</h1>
+     <form method="POST" action="/signout"> 
+        <button type="sumbit">Log out</button>
+    </form>
+      <% } %>  
+  </body>
+</html>
