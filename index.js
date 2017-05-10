@@ -3,6 +3,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var path = require('path');
+var mongoose= require('mongoose');
+var connectMongo=require('connect-mongo');
 var app = express();
 //---------------------------------------------------------------Set up view engine---------------------------------------------------
 app.set('views', path.join(__dirname, 'views'));
