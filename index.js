@@ -21,13 +21,14 @@ mongoose.connect(urlDB);
 
 var MongoStore = connectMongo(session);
 //------------------------------------------------Routes---------------------------------------------------------------------------
-
+var main= require('./controllers/main');
 var users = require('./controllers/users');
 app.use('/users', users);
+app.use('/main', main);
+
 
 app.get('/', function (req, res) {
-    //res.send('hello');
-    res.render('signup',{ title: 'My Mongo App' });
+    res.send('hello');    
 });
 
 //------------------------------------------------Server-------------------------------------------------------------------------

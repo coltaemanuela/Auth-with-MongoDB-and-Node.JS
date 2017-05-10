@@ -1,19 +1,12 @@
-
+//-------------------------------------------------------------Modules and Models ------------------------------------------------------
 var express = require('express');
 var router = express.Router();
-var ERRORS=require('../errors/errors');
+
 var User=require('../models/users_model');
 
-/* GET home page. */
+//-------------------------------------------------------------Routes--------------------------------------------------------------
 router.get('/', function(req, res, next) {
-  res.render('index', { user:req.session.user, title: 'Express App' });
-});
-
-router.get('/signup', function (req, res, next) {
-  if (req.session.user) { 
-     return res.redirect('/');
-   }
-   next();
+  res.render('index', { user:'emma', title: 'Express App' });
 });
 
 function generateSignInUpHandler(title) {
@@ -21,9 +14,9 @@ function generateSignInUpHandler(title) {
       var err = null;
       
       if (!req.body.email) {
-        err = ERRORS.MISSING_EMAIL;
+        err = 'missing email';
       } else if (!req.body.password) {
-        err = ERRORS.MISSING_PASSWORD;
+        err = 'missing password';
       }
       
       if (err) {
@@ -36,7 +29,7 @@ function generateSignInUpHandler(title) {
 
 router.post("/signup", generateSignInUpHandler("Sign up"));
 router.post("/signup", function (req, res, next) {
-  var err = req.body.password !== req.body.confirmpassword ? ERRORS.PASSWORDS_DO_NOT_MATCH : null;
+  var err = req.body.password !== req.body.confirmpassword ? 'missing password' : null;
   if (err) {
     return res.render('signup', { error: err, title: "Sign Up" });
   }
@@ -46,7 +39,6 @@ router.post("/signup", function (req, res, next) {
 router.get('/signup',function(req,res){
   res.render('signup', { title: 'Sign up' });
 }); 
-
 
 router.post('/signup',function(req,res){
   
@@ -63,5 +55,5 @@ router.post('/signup',function(req,res){
   
   });
 
-//-------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------- Export -----------------------------------------------------------
 module.exports = router;
