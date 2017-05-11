@@ -9,7 +9,7 @@ var connectMongo    = require('connect-mongo');
 mongoose.Promise    = require('bluebird');
 var jwt             = require('jwt-simple');
 var passport        = require('passport');
-var pass            = require('./config/passport')(passport);
+var pass            = require('./config/passport');
 
 var app = express();
 
