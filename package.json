@@ -33,6 +33,7 @@
     "mongoose": "^4.9.8",
     "morgan": "^1.8.1",
     "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
     "passport-jwt": "^2.2.1",
     "path": "^0.12.7"
   }
