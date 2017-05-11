@@ -1,7 +1,6 @@
-var JwtStrategy = require('passport-jwt').Strategy;
- 
+var JwtStrategy = require('passport-jwt').Strategy; 
 var User        = require('../models/users_model');
-var config      = require('../config/database'); // get db config file
+var config      = require('../config/database');
  
 module.exports = function(passport) {
   var opts = {};

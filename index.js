@@ -9,6 +9,7 @@ var connectMongo    = require('connect-mongo');
 mongoose.Promise    = require('bluebird');
 var jwt             = require('jwt-simple');
 var passport        = require('passport');
+var pass            = require('./config/passport')(passport);
 
 var app = express();
 
@@ -24,7 +25,7 @@ app.use(bodyParser.json());
 //---------------------------------------------------------------Connect to DB ---------------------------------------------------
 
 var MongoStore = connectMongo(session);
-var urlDB=require('./config/database');
+var urlDB = require('./config/database');
 mongoose.connect(urlDB.database);
 
 
