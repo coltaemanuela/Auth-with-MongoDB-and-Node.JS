@@ -4,9 +4,11 @@ var bcrypt      = require('bcrypt');
 var JWT         = require('jsonwebtoken');
 var jwt         = require('jwt-simple');
 var passport    = require('passport');
+FacebookStrategy = require('passport-facebook').Strategy;
 var router      = express.Router();
 var User        = require('../models/users_model');
 var config = require('../config/database');
+var configAuth = require('../config/auth');
 
 //------------------------------------------------------------- Routes -------------------------------------------------------------
  router.get('/', function(req, res) {
@@ -62,6 +64,29 @@ var config = require('../config/database');
     }
   });
 });
+ 
+ 
+ 
+
+ router.get('/auth/facebook', passport.authenticate('facebook'));
+
+ router.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { successRedirect: '/users',
+                                      failureRedirect: '/' }));
+ 
+ 
+ passport.use(new FacebookStrategy({
+    clientID: configAuth.facebookAuth.clientID,
+    clientSecret: configAuth.facebookAuth.clientSecret,
+    callbackURL: configAuth.facebookAuth.callbackURL
+  },
+  function(accessToken, refreshToken, profile, done) {
+    //User.findOrCreate(..., function(err, user) {
+    //  if (err) { return done(err); }
+    //  done(null, user);
+    //});
+  }
+));
 
 //-------------------------------------------------------------- Export -----------------------------------------------------------
 module.exports = router;
